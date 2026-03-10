@@ -1,6 +1,6 @@
 ---
 title: Music
-date: 2026-01-28 21:47:22
+date: 2026-03-10 21:47:22
 comments: false
 aside: false
 ---
@@ -11,7 +11,7 @@ aside: false
   style="width: 520px; height: 320;"
   alt="About image">
 <iframe style="border-radius:12px"  
-        src="https://open.spotify.com/embed/playlist/0mrqaVOe6KYEEcaSYhVK4a?utm_source=generator"  
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO1IPOOk?utm_source=generator"  
         width="100%"  
         height="450"  
         frameBorder="0"  
