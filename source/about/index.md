@@ -44,4 +44,3 @@ This blog is where I document my learning journey: from writing up CTFs and anal
 ---
 
 *"The best defense is a good understanding of the attack"*
-Tôi đang tích cực tham gia các cuộc thi CTF và nhiều cuộc thi hack khác nhau với nhóm Lợi Yêu Kho Nội, một đội gồm toàn là các bạn cùng lớp của tôi.
