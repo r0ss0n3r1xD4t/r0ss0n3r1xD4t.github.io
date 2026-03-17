@@ -7,9 +7,9 @@ categories:
   - Forensics
 toc: true
 ---
-## Nơi đây lưu trữ các lời giải của các bài lab trên [Cyperdefenders](https://cyberdefenders.org) mà mình làm ^^
+# Nơi đây lưu trữ các lời giải của các bài lab trên [Cyperdefenders](https://cyberdefenders.org) mà mình làm ^^
 
-### [Webstrike Lab](https://cyberdefenders.org/blueteam-ctf-challenges/webstrike/)
+# [Webstrike Lab](https://cyberdefenders.org/blueteam-ctf-challenges/webstrike/)
 
 **Tool sử dụng trong bài**: Wireshark
 
@@ -19,9 +19,7 @@ Với bài lần này, ta được cung cấp 1 file **pcap**
 
 ----
 
-
-
-# Bài làm
+## Solution
 ## Câu  1
 Vì là người tấn công thì thường là người bắt đầu gói tin, nên mình sẽ lấy địa chỉ ip source của packet đầu tiên
 
