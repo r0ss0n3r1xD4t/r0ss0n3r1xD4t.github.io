@@ -1,7 +1,7 @@
 ---
 title: (VietNamese) CyberDefenders Writeup (Author)
 date: 2026-3-20 08:19:33
-top_img: /img/cyberdefenders/cyberdefenders.png
+top_img: /img/cyberdefenders/cyberdefenders
 cover: /img/cyberdefenders/cyberdefenders.png
 categories:
   - Forensics
