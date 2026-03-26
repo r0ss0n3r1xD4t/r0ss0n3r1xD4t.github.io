@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>(VietNamese) Tamu CTF 2026 Writeup (Author) | r0ss0n3r1xd4t</title><meta name="author" content="Nguyen Huu Dat"><meta name="copyright" content="Nguyen Huu Dat"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Colonel An Army Colonel is having trouble decrypting a sensitive file. He remembers it being encrypted with AES CBC with an iv of 1234567890123456, but can’t for the life of him remember what key he u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(VietNamese) Tamu CTF 2026 Writeup (Author)">
+<meta property="og:url" content="https://r0ss0n3r1xd4t.github.io/2026/03/11/tamuctf2026/tamuctf/index.html">
+<meta property="og:site_name" content="r0ss0n3r1xd4t">
+<meta property="og:description" content="Colonel An Army Colonel is having trouble decrypting a sensitive file. He remembers it being encrypted with AES CBC with an iv of 1234567890123456, but can’t for the life of him remember what key he u">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://r0ss0n3r1xd4t.github.io/img/tamu/tamu.png">
+<meta property="article:published_time" content="2026-03-11T01:19:33.000Z">
+<meta property="article:modified_time" content="2026-03-26T09:22:40.158Z">
+<meta property="article:author" content="Nguyen Huu Dat">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://r0ss0n3r1xd4t.github.io/img/tamu/tamu.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "(VietNamese) Tamu CTF 2026 Writeup (Author)",
+  "url": "https://r0ss0n3r1xd4t.github.io/2026/03/11/tamuctf2026/tamuctf/",
+  "image": "https://r0ss0n3r1xd4t.github.io/img/tamu/tamu.png",
+  "datePublished": "2026-03-11T01:19:33.000Z",
+  "dateModified": "2026-03-26T09:22:40.158Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Nguyen Huu Dat",
+      "url": "https://r0ss0n3r1xd4t.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/avt.jpg"><link rel="canonical" href="https://r0ss0n3r1xd4t.github.io/2026/03/11/tamuctf2026/tamuctf/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '(VietNamese) Tamu CTF 2026 Writeup (Author)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avt.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About Me</span></a></div><div class="menus_item"><a class="site-page" href="/certificate/"><i class="fa-fw fas fa-certificate"></i><span> Certificate</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/tamu/tamu.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">r0ss0n3r1xd4t</span></a><a class="nav-page-title" href="/"><span class="site-name">(VietNamese) Tamu CTF 2026 Writeup (Author)</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> About Me</span></a></div><div class="menus_item"><a class="site-page" href="/certificate/"><i class="fa-fw fas fa-certificate"></i><span> Certificate</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">(VietNamese) Tamu CTF 2026 Writeup (Author)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-11T01:19:33.000Z" title="Created 2026-03-11 08:19:33">2026-03-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-26T09:22:40.158Z" title="Updated 2026-03-26 16:22:40">2026-03-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Forensics/">Forensics</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Forensics/Writeup-CTF/">Writeup CTF</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Colonel"><a href="#Colonel" class="headerlink" title="Colonel"></a>Colonel</h1><blockquote>
+<p>An Army Colonel is having trouble decrypting a sensitive file. He remembers it being encrypted with AES CBC with an iv of 1234567890123456, but can’t for the life of him remember what key he used. He captured a memory dump while he was trying to decrypt the file. Maybe you can find something in there?</p>
+</blockquote>
+<p>This is a memory dump so we can use Volatility3. First get information about OS &#x2F; kernel.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vol -f memory.dump banners.Banners</span><br><span class="line">0xcb5c6560      Linux version 6.17.0-14-generic (buildd@lcy02-amd64-067) (x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #14~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Jan 15 15:52:10 UTC 2 (Ubuntu 6.17.0-14.14~24.04.1-generic 6.17.9)</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&gt; Ubuntu 24.04 with kernel 6.17.0-14.</p>
+<p>Download symbols from <a target="_blank" rel="noopener" href="https://github.com/Abyss-W4tcher/volatility3-symbols/blob/master/Ubuntu/amd64/6.17.0/14/generic/Ubuntu_6.17.0-14-generic_6.17.0-14.14~24.04.1_amd64.json.xz">https://github.com/Abyss-W4tcher/volatility3-symbols/blob/master/Ubuntu/amd64/6.17.0/14/generic/Ubuntu_6.17.0-14-generic_6.17.0-14.14~24.04.1_amd64.json.xz</a> and add them to volatility3&#x2F;linux&#x2F; directory.</p>
+<p>Check Bash history</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ vol -f memory.dump linux.bash.Bash</span><br><span class="line">PID     Process CommandTime     Command</span><br><span class="line"></span><br><span class="line">4269    bash    2026-02-14 21:48:53.000000 UTC  ls</span><br><span class="line">4269    bash    2026-02-14 21:48:53.000000 UTC  ls /tmp</span><br><span class="line">4269    bash    2026-02-14 21:48:53.000000 UTC  exit</span><br><span class="line">4269    bash    2026-02-14 21:48:56.000000 UTC  cd validate/</span><br><span class="line">4269    bash    2026-02-14 21:49:03.000000 UTC  sudo insmod check_service.ko key_path=validation</span><br><span class="line">4269    bash    2026-02-14 21:49:09.000000 UTC  sudo rmmod check_service</span><br><span class="line">4269    bash    2026-02-14 21:49:11.000000 UTC  sudo insmod check_service.ko key_path=validation2</span><br></pre></td></tr></table></figure>
+
+<p>Looks like there is a custom kernel module check_service.ko. We can confirm using Lsmod.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vol -f memory.dump linux.lsmod.Lsmod </span><br><span class="line">Offset  Module Name     Code Size       Taints  Load Arguments  File Output</span><br><span class="line"></span><br><span class="line">0xffffc09b0100  check_service   0x3000  OOT_MODULE,UNSIGNED_MODULE      key_path=pu     N/A</span><br><span class="line">[...]</span><br></pre></td></tr></table></figure>
+
+<p>Try to recover the filesystem to see if we can find it (you may need to patch volatility based on this issue if you get an error: <a target="_blank" rel="noopener" href="https://github.com/volatilityfoundation/volatility3/issues/1943">https://github.com/volatilityfoundation/volatility3/issues/1943</a>).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vol -f memory.dump linux.pagecache.RecoverFs</span><br><span class="line">[...]</span><br><span class="line">$ find . -name &#x27;check_service.ko&#x27;</span><br><span class="line">./4e2ffbd3-03fb-41cf-8232-7d4f9ac31a47/home/ubuntu/validate/check_service.ko</span><br></pre></td></tr></table></figure>
+
+<p>Now we have the compiled kernel module, plus the two files that were used as “key_path” parameter in the Bash history. The two files are very similar, only a few bytes differ.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls ./4e2ffbd3-03fb-41cf-8232-7d4f9ac31a47/home/ubuntu/validate/</span><br><span class="line">check_service.ko  check_service_padded.ko  validation  validation2</span><br><span class="line"></span><br><span class="line">$ cat ./4e2ffbd3-03fb-41cf-8232-7d4f9ac31a47/home/ubuntu/validate/validation</span><br><span class="line">Qx+KvRQ1N2RR66IxSM5VjkrGKg09FH2f</span><br><span class="line"></span><br><span class="line">$ cat ./4e2ffbd3-03fb-41cf-8232-7d4f9ac31a47/home/ubuntu/validate/validation2</span><br><span class="line">Xx+KvRQ1NQRR56IxSM5VjjrRKg09Fl2e</span><br></pre></td></tr></table></figure>
+
+<p>Import in Ghidra as raw binary x86 64 bits instead of ELF because it’s corrupted, then try to reverse engineer &#x2F; guess what the module is doing based on strings and instructions:</p>
+<ul>
+<li>“&#x2F;root&#x2F;key.txt”, probably the AES-CBC key we are looking for, but it’s missing from the recovered filesystem.</li>
+<li>“Error: failed to open key file (%ld)\n”, “Error: Invalid key length (%zd), expected %d bytes\n”.</li>
+<li>“Error: Invalid key %*phN, indices %sincorrect\n”, it looks like the root key is compared with the key_path key and printing this when bytes differ.</li>
+</ul>
+<p>From my understanding &#x2F; educated guess, “&#x2F;root&#x2F;key.txt” is the correct key and this module is used to compare it with the file given on the command line (key_path). Since we have two very slightly different “validation” keys, the correct key is probably a mix of both. I used this Python script to generate all possibilities from the bytes of both validation keys and it turns out this is a correct guess.</p>
+<p>The challenge description gives the IV and the algoritm to use.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line">v1 = <span class="built_in">open</span>(<span class="string">&#x27;fs/4e2ffbd3-03fb-41cf-8232-7d4f9ac31a47/home/ubuntu/validate/validation&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).read().strip()</span><br><span class="line">v2 = <span class="built_in">open</span>(<span class="string">&#x27;fs/4e2ffbd3-03fb-41cf-8232-7d4f9ac31a47/home/ubuntu/validate/validation2&#x27;</span>, <span class="string">&#x27;r&#x27;</span>).read().strip()</span><br><span class="line">enc = <span class="built_in">open</span>(<span class="string">&#x27;flag.enc&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line"></span><br><span class="line">diff_indices = [i <span class="keyword">for</span> i, (k1, k2) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(v1, v2)) <span class="keyword">if</span> k1 != k2]</span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> itertools.product([<span class="number">0</span>, <span class="number">1</span>], repeat=<span class="built_in">len</span>(diff_indices)):</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    key = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(v1)):</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> diff_indices:</span><br><span class="line">            key += v1[i]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            key += (v1 <span class="keyword">if</span> it[j] <span class="keyword">else</span> v2)[i]</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    flag = AES.new(key.encode(), AES.MODE_CBC, iv=<span class="string">b&#x27;1234567890123456&#x27;</span>).decrypt(enc)</span><br><span class="line">    <span class="keyword">if</span> flag.startswith(<span class="string">b&#x27;gigem&#x27;</span>):</span><br><span class="line">        <span class="built_in">print</span>(key, flag)</span><br></pre></td></tr></table></figure>
+
+<p>This yields the correct key and the decrypted flag.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Qx+KvRQ1NQRR66IxSM5VjjrGKg09FH2e b&#x27;gigem&#123;bl3ss3d_4r3_th3_c010n31_m33k&#125;\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#x27;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://r0ss0n3r1xd4t.github.io">Nguyen Huu Dat</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://r0ss0n3r1xd4t.github.io/2026/03/11/tamuctf2026/tamuctf/">https://r0ss0n3r1xd4t.github.io/2026/03/11/tamuctf2026/tamuctf/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/tamu/tamu.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/20/cyberdefenders/cyberdefenders/" title="(VietNamese) CyberDefenders Writeup (Author)"><img class="cover" src="/img/cyberdefenders/cyberdefenders.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">(VietNamese) CyberDefenders Writeup (Author)</div></div><div class="info-2"><div class="info-item-1">Nơi đây lưu trữ các lời giải của các bài lab trên Cyperdefenders mà mình làm ^^Webstrike LabTool sử dụng trong bài: Wireshark Scenario (tình huống): Một điểm bất thường đã được phát hiện trong mạng nội bộ của công ty chúng tôi khi nhóm dev đã tìm thấy một tệp bất thường trên webserver. Nghi ngờ có mã độc, nhóm mạng đã chuẩn bị một tệp pcap có network traffic quan trọng để phân tích cho nhóm bảo mật. Hãy phân tích gói pcap. Với bài lần này, ta được cung cấp 1 file pcap   SolutionCâu  1Vì là ng...</div></div></div></a><a class="pagination-related" href="/2026/03/11/pico/pico/" title="(VietNamese) Pico CTF 2026 Writeup (Author)"><img class="cover" src="/img/pico/pico.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">(VietNamese) Pico CTF 2026 Writeup (Author)</div></div><div class="info-2"><div class="info-item-1"> Trong cuộc thi Pico CTF 2026 năm nay, mình có đóng góp một số thử thách mảng Forensics. Mình rất vui khi Pico năm nay đã thu hút được hàng ngàn đội đến từ khắp thế giới. Đồng thời, mình cũng vô cùng tự hào khi team mình EHC_Loi_Yeu_Kho_Noi_Pl2s đã giành top 200 toàn thế giới, một thành tích đáng tự hào đối với một team mới như chúng mình. Dưới đây là chi tiết thử thách mà mình đã đóng góp trong cuộc thi này.Mình sẽ đi vào viết chi tiết các bài trong picoCTF 2026   Binary Digits ReconFile ban...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avt.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Nguyen Huu Dat</div><div class="author-info-description">Hack To Learn, Not Learn To Hack</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/r0ss0n3r1xd4t"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Just a personal blogs</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Colonel"><span class="toc-number">1.</span> <span class="toc-text">Colonel</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/20/cyberdefenders/cyberdefenders/" title="(VietNamese) CyberDefenders Writeup (Author)"><img src="/img/cyberdefenders/cyberdefenders.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="(VietNamese) CyberDefenders Writeup (Author)"/></a><div class="content"><a class="title" href="/2026/03/20/cyberdefenders/cyberdefenders/" title="(VietNamese) CyberDefenders Writeup (Author)">(VietNamese) CyberDefenders Writeup (Author)</a><time datetime="2026-03-20T01:19:33.000Z" title="Created 2026-03-20 08:19:33">2026-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/11/pico/pico/" title="(VietNamese) Pico CTF 2026 Writeup (Author)"><img src="/img/pico/pico.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="(VietNamese) Pico CTF 2026 Writeup (Author)"/></a><div class="content"><a class="title" href="/2026/03/11/pico/pico/" title="(VietNamese) Pico CTF 2026 Writeup (Author)">(VietNamese) Pico CTF 2026 Writeup (Author)</a><time datetime="2026-03-11T01:19:33.000Z" title="Created 2026-03-11 08:19:33">2026-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/11/tamuctf2026/tamuctf/" title="(VietNamese) Tamu CTF 2026 Writeup (Author)"><img src="/img/tamu/tamu.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="(VietNamese) Tamu CTF 2026 Writeup (Author)"/></a><div class="content"><a class="title" href="/2026/03/11/tamuctf2026/tamuctf/" title="(VietNamese) Tamu CTF 2026 Writeup (Author)">(VietNamese) Tamu CTF 2026 Writeup (Author)</a><time datetime="2026-03-11T01:19:33.000Z" title="Created 2026-03-11 08:19:33">2026-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/27/Present_Pentest/pentest/" title="Pentest (Penetration Testing)"><img src="/img/pentest/pentest.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pentest (Penetration Testing)"/></a><div class="content"><a class="title" href="/2026/02/27/Present_Pentest/pentest/" title="Pentest (Penetration Testing)">Pentest (Penetration Testing)</a><time datetime="2026-02-27T01:19:33.000Z" title="Created 2026-02-27 08:19:33">2026-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/11/OverTheWire/bandit/" title="OverTheWire Bandit Writeup"><img src="/img/hinhnen.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OverTheWire Bandit Writeup"/></a><div class="content"><a class="title" href="/2026/01/11/OverTheWire/bandit/" title="OverTheWire Bandit Writeup">OverTheWire Bandit Writeup</a><time datetime="2026-01-11T01:19:33.000Z" title="Created 2026-01-11 08:19:33">2026-01-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Nguyen Huu Dat</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="85,107,47" opacity="0.55" zIndex="-1" count="140" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
