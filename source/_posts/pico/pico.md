@@ -183,7 +183,7 @@ Vậy nên mình thử key XOR IMSI: **310410187936156**
 
 
 
-# Reverse engineering ( Alight 36 + 1)
+# Reverse engineering ( Alight 36 + 1 , aduangduc)
 ## Gatekeeper
 ```python
 int __fastcall main(int argc, const char **argv, const char **envp)
@@ -566,7 +566,7 @@ hash : `15237662580160011234`
 nhập input bình thường
 flag: `picoCTF{d0nt_trust_us3rs}`
 
-# Web Exploitation
+# Web Exploitation ( thecatonthemoon)
 ## Old Sessions
 
 ![image](https://hackmd.io/_uploads/HJCUiBj3-e.png)
@@ -677,7 +677,7 @@ Sau khi đọc bảng ta thấy có những user sau
 Bảng này có username và password ở dạng hash. Trong đó `cat` là tên username tài khoản của ta, mình thử crack mật khẩu admin bằng [crack station](https://crackstation.net/) nhưng không được, crack tài khoản ctf-player thì ra được mật khẩu là `dyesebel`. Sau khi đăng nhập vào `ctf-player` ta lấy được flag.
 ![image](https://hackmd.io/_uploads/Hk6snHo3-l.png)
 
-# General Skills
+# General Skills ( lykn group)
 ## Undo
 ![image](https://hackmd.io/_uploads/HkwxB8s2-l.png)
 Bài này yêu cầu sử dụng các lệnh trong linux để recover flag đã encoded qua nhiều bước.
@@ -831,7 +831,7 @@ with ThreadPoolExecutor(max_workers=200) as executor:
 Và đó một thời gian khi server đã quá tải, truy cập vào trang web và lấy flag.
 ![image](https://hackmd.io/_uploads/ryAW5DjnZx.png)
 
-
+# Crypto ( chat lgpt + gemini pr0 + claude opus 36)
 ## Secure Dot Product 
 ![image](https://hackmd.io/_uploads/rydYlos3bg.png)
 Đề bài cho một server tính Dot Product (tích vô hướng) giữa vector của người dùng và AES Key (32 bytes). Dữ liệu truyền lên được kiểm tra tính toàn vẹn bằng SHA-512(salt + vector_string), với salt cực dài (256 bytes). Mục tiêu: Trích xuất AES Key để giải mã Flag. 
