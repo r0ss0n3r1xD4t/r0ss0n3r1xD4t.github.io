@@ -137,12 +137,16 @@ Skip mấy bài disk image xàm ở trên ta đến 1 bài network khá hay :D
 Tìm dữ liệu bị exfiltrate sau đó rcv flag
 
 ### Solution
-Follow theo UDP stream thấy 1 broadcast rất khả nghi
+Follow theo UDP stream có 3 packet thì thấy 1 broadcast rất khả nghi
+![image](https://hackmd.io/_uploads/BkH-Wghn-g.png)
+
 ```
 CARRIER: Verizon PLMN=310410 CELLID=25841
 CARRIER: AT&T PLMN=310410 CELLID=25842
 UNAUTHORIZED-TEST-NETWORK PLMN=00101 CELLID=91043
 ```
+![image](https://hackmd.io/_uploads/HyEqZxnhbl.png)
+
 2 dòng đầu thì bình thường nhưng dòng thứ 3 
 `UNAUTHORIZED-TEST-NETWORK`
 Có thể suy đoán đây là rogue tower
@@ -177,8 +181,30 @@ Ghép các nội dung trong phần body lại thu được 1 chuỗi có vẻ nh
 Nhưng decode ra không thu được gì
 Đọc hint thì có 1 cái là 
 `The encryption key is derived from the victim device's IMSI`
-Vậy nên mình thử key XOR IMSI: **310410187936156**
+Vậy nên mình thử key XOR IMSI: **310410185261676**
+Nếu bạn k biết XOR là gì thì : 
+![image](https://hackmd.io/_uploads/rJazGe3n-e.png)
+Mình có 1 simple script
+```python
+import base64
+
+encrypted_b64 = "SFxRWXJicU1KBVVDAmlUBVRZbUIBQQREZwJXD1VQBAcBSA=="
+payload = base64.b64decode(encrypted_b64)
+
+known_header = "picoCTF{"
+
+print("=== XOR Key Recovery ===")
+for i in range(len(known_header)):
+    # XOR each character in the known header with the payload to obtain the key
+    recovered_key_char = chr(payload[i] ^ ord(known_header[i]))
+    print(f"Index {i}: Needs key char '{recovered_key_char}'")
+```
+![image](https://hackmd.io/_uploads/rJ7cVg33Wg.png)
+Key chỉ là 8 số cuối của IMSI , giờ có thể lên cyperchef để decode cho nhanh
+![image](https://hackmd.io/_uploads/H11_rxh2Wg.png)
+Flag : `picoCTF{r0gu3_c3ll_t0w3r_7e9df319}`
 ## Timeline 0
+
 ## Timeline 1
 
 
