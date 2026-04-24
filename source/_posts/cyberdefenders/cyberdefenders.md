@@ -1,7 +1,7 @@
 ---
 title: (VietNamese) CyberDefenders Writeup (Author)
 date: 2026-3-20 08:19:33
-top_img: /img/cyberdefenders/cyberdefenders.png
+top_img: /img/cyberdefenders/cyberdefenders
 cover: /img/cyberdefenders/cyberdefenders.png
 categories:
   - Forensics
@@ -168,3 +168,67 @@ Thử tra google về cách identify hostname mình tìm được kết quả
 ![image](https://hackmd.io/_uploads/BySpzWkjZg.png)
 Và flag là : `AccountingPC`
 ![image](https://hackmd.io/_uploads/SyVSVZksWg.png)
+
+
+
+# [The Crime Lab](https://cyberdefenders.org/blueteam-ctf-challenges/the-crime/)
+
+**Tool sử dụng trong bài**: 
+[ALLEAPP](https://github.com/abrignoni/ALEAPP/releases/tag/v3.4.1) , **DB Browser for SQLite**
+
+**Scenario** (tình huống): We're currently in the midst of a murder investigation, and we've obtained the victim's phone as a key piece of evidence. After conducting interviews with witnesses and those in the victim's inner circle, your objective is to meticulously analyze the information we've gathered and diligently trace the evidence to piece together the sequence of events leading up to the incident.
+
+Đây là lab đầu tiên mình làm về android :D 
+
+
+----
+
+## Solution
+## Câu  1
+Based on the accounts of the witnesses and individuals close to the victim, it has become clear that the victim was interested in trading. This has led him to invest all of his money and acquire debt. Can you identify the `SHA256` of the trading application the victim primarily used on his phone?
+![image](https://hackmd.io/_uploads/HkO4F9_T-x.png)
+
+Sau khi chạy ALEAPP mình vào report kiểm tra thì thấy 1 app trading 
+![image](https://hackmd.io/_uploads/r1Uit5up-e.png)
+Vậy ta có thể xác định app trading câu hỏi nhắc đến là app này 
+![image](https://hackmd.io/_uploads/H16TK5_p-l.png)
+Vậy flag là : `4f168a772350f283a1c49e78c1548d7c2c6c05106d8b9feb825fdc3466e9df3c`
+
+## Câu  2
+![image](https://hackmd.io/_uploads/SkyfAqu6-e.png)
+Câu hỏi hỏi số tiền vậy ta có thể check phần msg trong ALEAPP để xem thông tin 
+![image](https://hackmd.io/_uploads/BkyrCcOpWg.png)
+Vậy flag là `250,000`
+
+## Câu 3
+![image](https://hackmd.io/_uploads/By58A5uaWg.png)
+Câu này hỏi name người cho vay tiền ở msg có address id vậy ta có thể dựa vào đó để tìm tên qua số điện thoại : 
+![image](https://hackmd.io/_uploads/HyM509O6bg.png)
+Vậy flag là : `Shady Wahab`
+
+## Câu 4 
+![image](https://hackmd.io/_uploads/SkphC5u6bg.png)
+Câu hỏi này bảo tìm địa điểm victim đến vào ngày : `September 20, 2023`
+
+![image](https://hackmd.io/_uploads/rJCl1od6Ze.png)
+Trong discord chat có một msg nói về cuộc đi chơi đến bảo tàng 
+`What a wonderful news! We'll meet at **The Mob Museum**, I'll await your call when you arrive. Enjoy you flight bro ❤️	`
+
+Nhưng nhập `The Mob Museum` thì báo sai flag 
+
+Bí quá nên mình đã xem hint 
+![image](https://hackmd.io/_uploads/rkmnWod6bx.png)
+Victim đã chụp ảnh màn hình trong google map 
+![image](https://hackmd.io/_uploads/H10Kzidabx.png)
+Ở rêcnt actiity có 1 tấm snapshot như vậy 
+=>> Flag là : `The Nile Ritz-Carlton`
+
+## Câu 5 
+![image](https://hackmd.io/_uploads/SydMbiu6bg.png)
+Trong google photo có ảnh vé máy bay đi đến lasvegas so flag là Las Vegas , éo biết giải thích thêm gì :x 
+![image](https://hackmd.io/_uploads/Hk9r-oOabg.png)
+
+## Câu 6 
+![image](https://hackmd.io/_uploads/ry8LZoOTWl.png)
+Câu này mới hỏi địa điểm mà mình đề cập ở câu 4 
+Vậy flag là : `The Mob Museum`
