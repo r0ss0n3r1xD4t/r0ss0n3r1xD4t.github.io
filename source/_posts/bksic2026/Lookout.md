@@ -1,6 +1,6 @@
 ---
 title: (VietNamese) BKISC CTF 2026 Writeup (Author)
-date: 2026-3-11 08:19:33
+date: 2026-5-11 05:19:33
 top_img: /img/bkisc/bkisc.png
 cover: /img/bkisc/bkisc.png
 categories:
