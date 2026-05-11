@@ -12,7 +12,7 @@ Hi, my name is Nguyen Huu Dat — also known as r0ss0n3r1. I am a first-year Inf
 
 During my university studies, I have developed a strong passion for Digital Investigations and Incident Response. My goal is to become a SOC Analyst, Incident Response Specialist, or Threat Hunter.
 
-I am actively participating in CTF competitions and various hacking contests with the Loi Yeu Kho Noi team, a team composed entirely of my classmates. Currently, we are ranked 41st on the CTFtime Vietnam leaderboard.
+I am actively participating in CTF competitions and various hacking contests with the Loi Yeu Kho Noi team, a team composed entirely of my classmates. Currently, we are ranked 19th on the [CTF Time] (https://ctftime.org/team/421951)  Vietnam leaderboard. 
 
 This blog is where I document my learning journey: from writing up CTFs and analyzing specific CVEs to taking technical notes on the topics I'm researching. Writing helps me organize my knowledge better, and I hope my posts will be useful to you as well.😄😄😄
 
