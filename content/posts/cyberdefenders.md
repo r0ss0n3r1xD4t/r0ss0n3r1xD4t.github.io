@@ -3,6 +3,7 @@ title: (VietNamese) CyberDefenders Writeup (Author)
 date: 2026-03-20T08:19:33+00:00
 categories:
   - Forensics
+toc: true
 ---
 # Nơi đây lưu trữ các lời giải của các bài lab trên [Cyperdefenders](https://cyberdefenders.org) mà mình làm ^^
 

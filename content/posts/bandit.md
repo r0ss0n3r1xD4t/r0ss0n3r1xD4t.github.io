@@ -2,19 +2,11 @@
 title: OverTheWire Bandit Writeup
 date: 2026-01-11T08:19:33+00:00
 categories:
-  - Web Exploit
   - Writeup CTF
-tags:
-  - OverTheWire
-  - Bandit
-  - Linux
-  - SSH
-  - CTF
+toc: true
 ---
 
 # Wup overthewire
-
-
 
 ## Bandit Level 0 -> 1 
 ### Login

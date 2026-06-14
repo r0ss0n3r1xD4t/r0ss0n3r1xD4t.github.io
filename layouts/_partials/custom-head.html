@@ -1,1 +1,27 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const tocLinks = document.querySelectorAll('.aside__content nav ul li a');
+    if (!tocLinks.length) return;
+
+    const headings = Array.from(tocLinks).map(link => {
+        const id = decodeURIComponent(link.getAttribute('href').replace('#', ''));
+        return document.getElementById(id);
+    }).filter(Boolean);
+
+    function onScroll() {
+        let current = headings[0];
+        for (const h of headings) {
+            if (h.getBoundingClientRect().top <= 80) current = h;
+        }
+        tocLinks.forEach(link => {
+            link.classList.remove('toc-active');
+            const id = decodeURIComponent(link.getAttribute('href').replace('#', ''));
+            if (current && id === current.id) link.classList.add('toc-active');
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+});
+</script>

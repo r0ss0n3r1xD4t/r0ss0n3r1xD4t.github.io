@@ -4,6 +4,7 @@ date: 2026-05-11T05:19:33+00:00
 categories:
   - Forensics
   - Writeup CTF
+toc: true
 ---
 > Trong cuộc thi `BKISC CTF 2026` năm nay, mình có giải một thử thách mảng Forensics , cảm ơn anh KangTheConq đã làm chall hay như v và thx a sealth2103 hint e solve :x
 

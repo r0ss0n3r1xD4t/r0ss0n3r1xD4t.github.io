@@ -1,6 +1,6 @@
 baseURL = "https://r0ss0n3r1xd4t.github.io"
 defaultContentLanguage = "en"
-title = "r0ss0n3r1xd4t"
+title = "r0ss0n3r1"
 author = "Nguyen Huu Dat"
 theme = "risotto"
 locale = "en"
@@ -16,14 +16,16 @@ pagerSize = 10
     [markup.goldmark.renderer]
       unsafe = true
   [markup.tableOfContents]
-    startLevel = 2
+    startLevel = 1
     endLevel   = 3
     ordered    = true
 
 [params]
+  [params.theme]
+    palette = "base16-dark"
   [params.about]
-    title = "r0ss0n3r1"
-    description = "Hack To Learn, Not Learn To Hack"
+    title = "datxmilanista"
+    description = "The best defense is a good understanding of the attack"
     logo = "👾"
 
 [[params.socialLinks]]
@@ -67,13 +69,7 @@ url = "mailto:datxmilanista@gmail.com"
     name = "categories"
     url = "/categories/"
     weight = 30
-  [[menu.main]]
-    identifier = "tags"
-    name = "tags"
-    url = "/tags/"
-    weight = 40
 
 [taxonomies]
   category = "categories"
-  tag = "tags"
   series = "series"

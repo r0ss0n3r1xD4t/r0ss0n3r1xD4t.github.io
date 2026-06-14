@@ -1,1 +1,36 @@
 /* Override this file to customise the theme's CSS for your site */
+
+/* TOC sidebar styling */
+.aside__content nav {
+    font-size: 0.85rem;
+}
+
+.aside__content nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5rem 0;
+}
+
+.aside__content nav ul ul {
+    padding-left: 1rem;
+}
+
+.aside__content nav ul li a {
+    display: block;
+    padding: 0.15rem 0.4rem;
+    border-left: 2px solid transparent;
+    color: var(--off-fg);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+    word-break: break-word;
+}
+
+.aside__content nav ul li a:hover {
+    color: var(--fg);
+}
+
+.aside__content nav ul li a.toc-active {
+    border-left-color: var(--fg);
+    color: var(--fg);
+    font-weight: bold;
+}

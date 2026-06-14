@@ -4,6 +4,7 @@ date: 2026-03-26T16:19:33+00:00
 categories:
   - Forensics
   - Writeup CTF
+toc: true
 ---
 # Colonel - English Version
 > An Army Colonel is having trouble decrypting a sensitive file. He remembers it being encrypted with AES CBC with an iv of 1234567890123456, but can't for the life of him remember what key he used. He captured a memory dump while he was trying to decrypt the file. Maybe you can find something in there?

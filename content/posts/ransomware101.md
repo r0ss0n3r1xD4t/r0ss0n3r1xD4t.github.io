@@ -4,8 +4,8 @@ date: 2026-04-09T16:19:33+00:00
 categories:
   - Forensics
   - Writeup CTF
+toc: true
 ---
-
 # Ransomware 101
 ![image](https://hackmd.io/_uploads/Hk9y4Hr2be.png)
 
