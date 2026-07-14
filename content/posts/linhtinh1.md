@@ -5,6 +5,8 @@ categories:
   - linhtinh
 toc: true
 ---
+![Chia sẻ để học nhiều hơn](/images/posts/linhtinh1/image.png)
+
 Có một câu nói mình đọc được cách đây khá lâu:
 
 > *"Nếu là kiến thức, hãy chia sẻ tất cả những gì mình biết. Để rồi một ngày bạn nhận ra mình chẳng còn gì để giữ riêng. Khi ai cũng giỏi như mình, điều đó sẽ buộc mình phải tiếp tục học để giỏi hơn."*
