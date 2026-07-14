@@ -1,4 +1,3 @@
-
 ---
 title: "Chia sẻ để học nhiều hơn"
 date: 2026-07-14T00:00:00+00:00
@@ -6,8 +5,6 @@ categories:
   - linhtinh
 toc: true
 ---
-# Chia sẻ kiến thức
-
 Có một câu nói mình đọc được cách đây khá lâu:
 
 > *"Nếu là kiến thức, hãy chia sẻ tất cả những gì mình biết. Để rồi một ngày bạn nhận ra mình chẳng còn gì để giữ riêng. Khi ai cũng giỏi như mình, điều đó sẽ buộc mình phải tiếp tục học để giỏi hơn."*
