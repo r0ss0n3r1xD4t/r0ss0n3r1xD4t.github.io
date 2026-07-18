@@ -15,15 +15,14 @@
     <article class="life-entry">
         <header class="life-entry__header">
             <h1>{{ .Title | markdownify }}</h1>
+            {{ with $coverSrc }}
+                <figure class="life-entry__cover">
+                    <img src="{{ . }}" alt="{{ $.Title }}">
+                </figure>
+            {{ end }}
             <p class="life-entry__meta">{{ .Date.Format "2006-01-02" }}</p>
             {{ with .Params.description }}<p class="life-entry__description">{{ . }}</p>{{ end }}
         </header>
-
-        {{ with $coverSrc }}
-            <figure class="life-entry__cover">
-                <img src="{{ . }}" alt="{{ $.Title }}">
-            </figure>
-        {{ end }}
 
         <div class="life-entry__body">
             {{ .Content }}
