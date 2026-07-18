@@ -1,0 +1,235 @@
+/* Override this file to customise the theme's CSS for your site */
+
+/* TOC sidebar styling */
+.aside__content nav {
+    font-size: 0.85rem;
+}
+
+.aside__content nav ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5rem 0;
+}
+
+.aside__content nav ul ul {
+    padding-left: 1rem;
+}
+
+.aside__content nav ul li a {
+    display: block;
+    padding: 0.15rem 0.4rem;
+    border-left: 2px solid transparent;
+    color: var(--off-fg);
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+    word-break: break-word;
+}
+
+.aside__content nav ul li a:hover {
+    color: var(--fg);
+}
+
+.aside__content nav ul li a.toc-active {
+    border-left-color: var(--fg);
+    color: var(--fg);
+    font-weight: bold;
+}
+
+/* Life photo log */
+.life-intro {
+    margin-bottom: 2rem;
+}
+
+.life-intro__description,
+.life-entry__description {
+    color: var(--off-fg);
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    line-height: 1.55;
+}
+
+.life-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.life-card {
+    margin: 0;
+}
+
+.life-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--fg);
+    text-decoration: none;
+    padding: 0.85rem 0 0;
+    border-top: 1px solid var(--inner-bg);
+}
+
+.life-card__image,
+.life-entry__cover img,
+.life-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--inner-bg);
+    background: var(--inner-bg);
+}
+
+.life-card__image {
+    height: clamp(7rem, 18vw, 10rem);
+    object-fit: cover;
+    object-position: center;
+    margin-top: 0.75rem;
+    filter: saturate(0.92) contrast(1.04);
+    transition: filter 160ms ease-out, transform 160ms ease-out, border-color 160ms ease-out;
+}
+
+.life-card__link:hover .life-card__image {
+    border-color: var(--link);
+    filter: saturate(1.04) contrast(1.08);
+    transform: translateY(-2px);
+}
+
+.life-card__meta,
+.life-entry__meta {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.life-card__title {
+    margin: 0.2rem 0 0;
+    color: var(--fg);
+    font-size: 1rem;
+    line-height: 1.35;
+    text-wrap: balance;
+}
+
+.life-card__title::before {
+    color: var(--link);
+}
+
+.life-card__description {
+    margin: 0.35rem 0 0;
+    color: var(--off-fg);
+    font-size: 0.85rem;
+    line-height: 1.35;
+    flex-grow: 1;
+}
+
+.life-entry__header {
+    margin-bottom: 1.5rem;
+}
+
+.life-entry__cover {
+    margin: 0 0 1.5rem;
+}
+
+.life-entry__body {
+    max-width: 65ch;
+}
+
+.life-photo-wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.life-photo {
+    margin: 0;
+}
+
+.life-photo img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.life-photo__button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: zoom-in;
+}
+
+.life-photo__button:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 3px;
+}
+
+.life-photo figcaption {
+    color: var(--off-fg);
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+}
+
+.life-lightbox[hidden] {
+    display: none;
+}
+
+.life-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    background: rgba(0, 0, 0, 0.86);
+    cursor: zoom-out;
+}
+
+.life-lightbox__image {
+    max-width: min(100%, 90rem);
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    border: 1px solid var(--base03);
+    object-fit: contain;
+    background: var(--inner-bg);
+}
+
+.life-lightbox__close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--base03);
+    background: var(--bg);
+    color: var(--fg);
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.life-lightbox-open {
+    overflow: hidden;
+}
+
+.life-lightbox__close:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 3px;
+}
+
+@media (max-width: 44.99rem) {
+    .life-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .life-card__image {
+        transition: none;
+    }
+
+    .life-card__link:hover .life-card__image {
+        transform: none;
+    }
+}

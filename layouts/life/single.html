@@ -1,0 +1,108 @@
+{{ define "main" }}
+    {{ $cover := .Params.cover }}
+    {{ $coverSrc := "" }}
+    {{ with $cover }}
+        {{ $resource := $.Resources.GetMatch . }}
+        {{ if $resource }}
+            {{ $coverSrc = $resource.RelPermalink }}
+        {{ else if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+            {{ $coverSrc = . }}
+        {{ else }}
+            {{ $coverSrc = . | relURL }}
+        {{ end }}
+    {{ end }}
+
+    <article class="life-entry">
+        <header class="life-entry__header">
+            <h1>{{ .Title | markdownify }}</h1>
+            <p class="life-entry__meta">{{ .Date.Format "2006-01-02" }}</p>
+            {{ with .Params.description }}<p class="life-entry__description">{{ . }}</p>{{ end }}
+        </header>
+
+        {{ with $coverSrc }}
+            <figure class="life-entry__cover">
+                <img src="{{ . }}" alt="{{ $.Title }}">
+            </figure>
+        {{ end }}
+
+        <div class="life-entry__body">
+            {{ .Content }}
+        </div>
+
+        {{ with .Params.photos }}
+            <section class="life-photo-wall" aria-label="Photo gallery">
+                {{ range . }}
+                    {{ $photo := . }}
+                    {{ $src := .src }}
+                    {{ $resolved := "" }}
+                    {{ with $src }}
+                        {{ $resource := $.Resources.GetMatch . }}
+                        {{ if $resource }}
+                            {{ $resolved = $resource.RelPermalink }}
+                        {{ else if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+                            {{ $resolved = . }}
+                        {{ else }}
+                            {{ $resolved = . | relURL }}
+                        {{ end }}
+                    {{ end }}
+                    {{ with $resolved }}
+                        <figure class="life-photo">
+                            <button class="life-photo__button" type="button" data-full="{{ . }}" data-alt="{{ default $.Title $photo.alt }}">
+                                <img src="{{ . }}" alt="{{ default $.Title $photo.alt }}">
+                            </button>
+                            {{ with $photo.caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+                        </figure>
+                    {{ end }}
+                {{ end }}
+            </section>
+        {{ end }}
+    </article>
+
+    <div class="life-lightbox" data-life-lightbox hidden>
+        <button class="life-lightbox__close" type="button" aria-label="Close photo">&times;</button>
+        <img class="life-lightbox__image" src="" alt="">
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const lightbox = document.querySelector('[data-life-lightbox]');
+        if (!lightbox) return;
+
+        const image = lightbox.querySelector('.life-lightbox__image');
+        const close = lightbox.querySelector('.life-lightbox__close');
+
+        function openPhoto(button) {
+            image.src = button.dataset.full;
+            image.alt = button.dataset.alt || '';
+            lightbox.hidden = false;
+            document.body.classList.add('life-lightbox-open');
+            close.focus();
+        }
+
+        function closePhoto() {
+            lightbox.hidden = true;
+            image.src = '';
+            document.body.classList.remove('life-lightbox-open');
+        }
+
+        document.querySelectorAll('.life-photo__button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                openPhoto(button);
+            });
+        });
+
+        close.addEventListener('click', closePhoto);
+        lightbox.addEventListener('click', function (event) {
+            if (event.target === lightbox) closePhoto();
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && !lightbox.hidden) closePhoto();
+        });
+    });
+    </script>
+{{ end }}
+
+{{ define "aside" }}
+    {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
+    <p>{{ .Date.Format "2006-01-02" }}</p>
+{{ end }}

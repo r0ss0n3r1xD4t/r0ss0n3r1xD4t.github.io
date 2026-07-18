@@ -1,0 +1,40 @@
+{{ define "main" }}
+    <section class="life-intro">
+        <h1 id="{{ .Title | urlize }}">{{ .Title | markdownify }}</h1>
+        {{ with .Params.description }}<p class="life-intro__description">{{ . }}</p>{{ end }}
+        {{ .Content }}
+    </section>
+
+    <section class="life-grid" aria-label="Life entries">
+        {{ range .Pages.ByDate.Reverse }}
+            {{ $page := . }}
+            {{ $cover := .Params.cover }}
+            {{ $coverSrc := "" }}
+            {{ with $cover }}
+                {{ $resource := $page.Resources.GetMatch . }}
+                {{ if $resource }}
+                    {{ $coverSrc = $resource.RelPermalink }}
+                {{ else if or (hasPrefix . "http://") (hasPrefix . "https://") }}
+                    {{ $coverSrc = . }}
+                {{ else }}
+                    {{ $coverSrc = . | relURL }}
+                {{ end }}
+            {{ end }}
+            <article class="life-card">
+                <a class="life-card__link" href="{{ .RelPermalink }}">
+                    <span class="life-card__meta">{{ .Date.Format "2006-01-02" }}</span>
+                    <h2 class="life-card__title">{{ .Title | markdownify }}</h2>
+                    {{ with .Params.description }}<p class="life-card__description">{{ . }}</p>{{ end }}
+                    {{ with $coverSrc }}
+                        <img class="life-card__image" src="{{ . }}" alt="{{ $page.Title }}">
+                    {{ end }}
+                </a>
+            </article>
+        {{ end }}
+    </section>
+{{ end }}
+
+{{ define "aside" }}
+    {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
+    <p>personal photo log</p>
+{{ end }}

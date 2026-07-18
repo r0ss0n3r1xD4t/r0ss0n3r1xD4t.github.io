@@ -60,6 +60,11 @@ url = "mailto:datxmilanista@gmail.com"
     url = "/posts/"
     weight = 10
   [[menu.main]]
+    identifier = "life"
+    name = "life"
+    url = "/life/"
+    weight = 15
+  [[menu.main]]
     identifier = "about"
     name = "about"
     url = "/about/"
