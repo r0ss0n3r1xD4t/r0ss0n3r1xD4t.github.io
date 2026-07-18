@@ -219,8 +219,66 @@
 }
 
 @media (max-width: 44.99rem) {
+    .page {
+        margin: 0.5rem auto;
+        grid-row-gap: 1rem;
+    }
+
+    .page__header {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .page__body {
+        box-shadow: 0 0 0 0.5rem var(--off-bg);
+    }
+
+    .page__aside {
+        position: static;
+        top: auto;
+        right: auto;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .life-intro {
+        margin-bottom: 1.25rem;
+    }
+
+    .life-intro__description,
+    .life-entry__description {
+        font-size: 1rem;
+        line-height: 1.45;
+    }
+
     .life-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .life-card__link {
+        padding-top: 0.65rem;
+    }
+
+    .life-card__image {
+        height: clamp(12rem, 52vw, 16rem);
+    }
+
+    .life-photo-wall {
+        grid-template-columns: 1fr;
+    }
+
+    .life-entry__cover,
+    .life-entry__body {
+        margin-bottom: 1rem;
+    }
+
+    .life-lightbox {
+        padding: 0.75rem;
+    }
+
+    .life-lightbox__image {
+        max-height: 78vh;
     }
 }
 

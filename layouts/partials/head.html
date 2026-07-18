@@ -14,7 +14,7 @@
 <!-- risotto theme -->
 <link rel="stylesheet" href="{{ printf "css/palettes/%s.css" (.Site.Params.theme.palette | default "base16-dark") | relURL }}">
 <link rel="stylesheet" href="{{ "css/risotto.css" | relURL }}">
-<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+<link rel="stylesheet" href="{{ printf "%s?v=%d" ("css/custom.css" | relURL) now.Unix }}">
 
 <!-- favicon -->
 {{ if os.FileExists "static/favicon.ico" }}<link rel="icon" href="{{ "favicon.ico" | relURL }}">{{ end }}
