@@ -1,0 +1,31 @@
+Watching for changes in C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/archetypes, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/assets, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/content/{about,life,posts}, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/data, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/i18n, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/layouts/{_default,_partials,life,partials}, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/static/{css,images}, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/themes/risotto/archetypes, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/themes/risotto/layouts/{_default,partials,post}, C:/Users/Admin/Downloads/r0ss0n3r1xD4t.github.io/themes/risotto/static/{css,images}
+Watching for config changes in C:\Users\Admin\Downloads\r0ss0n3r1xD4t.github.io\hugo.toml, C:\Users\Admin\Downloads\r0ss0n3r1xD4t.github.io\themes\risotto\config.toml
+Start building sites … 
+hugo v0.163.0-4a9485336a3ff2cea07ab88e2a17ec34d5baaa6e+extended windows/amd64 BuildDate=2026-06-08T14:13:03Z VendorInfo=gohugoio
+
+
+                  │ EN 
+──────────────────┼────
+ Pages            │ 34 
+ Paginator pages  │  0 
+ Non-page files   │ 78 
+ Static files     │ 35 
+ Processed images │  0 
+ Aliases          │  0 
+ Cleaned          │  0 
+
+Built in 310 ms
+Environment: "development"
+Serving pages from disk
+Web Server is available at http://127.0.0.1:1313/ (bind address 127.0.0.1) 
+Press Ctrl+C to stop
+
+Change of Static files detected, rebuilding site (#1).
+2026-07-20 11:34:30.019 +0700
+Syncing \css\custom.css to \
+
+Change detected, rebuilding site (#2).
+2026-07-20 11:34:30.024 +0700
+Template changed /partials/about.html
+Web Server is available at http://127.0.0.1:1313/ (bind address 127.0.0.1)
+Total in 51 ms
