@@ -1,5 +1,5 @@
 ---
-title: "FPTU Kỳ Truyện - Khi sinh viên gian lận và hack vào server trường"
+title: "Đại học FPT Kỳ Truyện - Khi sinh viên gian lận và hack vào server trường"
 date: 2026-08-01T00:00:00+00:00
 categories:
   - linhtinh
