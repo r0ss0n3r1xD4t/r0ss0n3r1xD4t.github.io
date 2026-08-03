@@ -1,12 +1,10 @@
 ---
-title: "FPTU Kỳ Truyện - Đại học FPT: khi sinh viên gian lận và hack vào server trường"
+title: "FPTU Kỳ Truyện - Khi sinh viên gian lận và hack vào server trường"
 date: 2026-08-01T00:00:00+00:00
 categories:
   - linhtinh
 toc: true
 ---
-
-
 
 *Lấy từ nguồn:* `https://tinhte.vn/thread/dai-hoc-fpt-khi-sinh-vien-gian-lan-va-hack-vao-server-truong.1091706/`
 
