@@ -1,0 +1,19 @@
+<% if (page.photos && page.photos.length) { %>
+<%
+  var hasCaptions = page.captions && page.captions.length === page.photos.length;
+  var galleryClass = 'article-gallery' + (hasCaptions ? ' with-captions' : '');
+%>
+<div class="<%= galleryClass %>">
+    <% page.photos.forEach(function(photo, i) { %>
+      <% var cap = hasCaptions && page.captions[i] ? page.captions[i] : ''; %>
+      <figure class="gallery-figure">
+        <a href="<%- url_for(photo) %>" rel="gallery_<%= page._id %>" class="gallery-item"<% if (cap) { %> title="<%= cap %>"<% } %>>
+          <img src="<%- url_for(photo) %>" itemprop="image" alt="<%= cap %>" loading="lazy" />
+        </a>
+        <% if (cap) { %>
+          <figcaption class="gallery-caption"><%= cap %></figcaption>
+        <% } %>
+      </figure>
+    <% }) %>
+</div>
+<% } %>
