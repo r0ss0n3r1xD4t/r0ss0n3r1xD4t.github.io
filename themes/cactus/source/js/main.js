@@ -12,6 +12,35 @@ if (!!$.prototype.justifiedGallery) {
 
 $(document).ready(function() {
 
+  // Open inline article images in a lightweight full-screen preview.
+  var lightbox = document.getElementById("image-lightbox");
+  var lightboxImage = lightbox && lightbox.querySelector(".image-lightbox__image");
+
+  if (lightbox && lightboxImage) {
+    $(".content img").css("cursor", "zoom-in").on("click", function() {
+      lightboxImage.src = this.currentSrc || this.src;
+      lightboxImage.alt = this.alt || "";
+      lightbox.hidden = false;
+      document.body.classList.add("image-lightbox-open");
+    });
+
+    $(lightbox).on("click", function(event) {
+      if (event.target === lightbox || event.target.classList.contains("image-lightbox__close")) {
+        lightbox.hidden = true;
+        lightboxImage.removeAttribute("src");
+        document.body.classList.remove("image-lightbox-open");
+      }
+    });
+
+    $(document).on("keydown", function(event) {
+      if (event.key === "Escape" && !lightbox.hidden) {
+        lightbox.hidden = true;
+        lightboxImage.removeAttribute("src");
+        document.body.classList.remove("image-lightbox-open");
+      }
+    });
+  }
+
   /**
    * Shows the responsive navigation menu on mobile.
    */
