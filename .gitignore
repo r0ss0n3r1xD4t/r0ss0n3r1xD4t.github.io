@@ -4,6 +4,8 @@ db.json
 *.log
 node_modules/
 public/
+source/images/optimized/
+scripts/.responsive-images.json
 .deploy*/
 _multiconfig.yml
 db.json

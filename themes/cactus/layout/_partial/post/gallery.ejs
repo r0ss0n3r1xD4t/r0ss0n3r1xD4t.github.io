@@ -10,7 +10,7 @@
       <% var cap = hasCaptions && page.captions[i] ? page.captions[i] : ''; %>
       <figure class="gallery-figure">
         <a href="<%- url_for(photo) %>" rel="gallery_<%= page._id %>" class="gallery-item"<% if (cap) { %> title="<%= cap %>"<% } %>>
-          <img src="<%- url_for(photo) %>" itemprop="image" alt="<%= cap %>" loading="<%= page.gallery === 'grid' || page.gallery === 'collage' ? 'eager' : 'lazy' %>" />
+          <%- responsive_image(url_for(photo), cap, { loading: i === 0 ? 'eager' : 'lazy' }) %>
         </a>
         <% if (cap) { %>
           <figcaption class="gallery-caption"><%= cap %></figcaption>

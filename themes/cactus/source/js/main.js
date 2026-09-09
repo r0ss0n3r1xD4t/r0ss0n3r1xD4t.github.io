@@ -5,7 +5,8 @@ if (!!$.prototype.justifiedGallery) {
   var options = {
     rowHeight: 140,
     margins: 4,
-    lastRow: "justify"
+    lastRow: "justify",
+    imgSelector: "> img, > picture > img, > a > img, > a > picture > img"
   };
   $(".article-gallery:not(.with-captions)").justifiedGallery(options);
 }
@@ -17,8 +18,9 @@ $(document).ready(function() {
   var lightboxImage = lightbox && lightbox.querySelector(".image-lightbox__image");
 
   if (lightbox && lightboxImage) {
-    $(".content img").css("cursor", "zoom-in").on("click", function() {
-      lightboxImage.src = this.currentSrc || this.src;
+    $(".content img").css("cursor", "zoom-in").on("click", function(event) {
+      event.preventDefault();
+      lightboxImage.src = this.dataset.fullSrc || this.currentSrc || this.src;
       lightboxImage.alt = this.alt || "";
       lightbox.hidden = false;
       document.body.classList.add("image-lightbox-open");
